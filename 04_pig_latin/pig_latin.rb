@@ -17,19 +17,23 @@
 
 def translate(word)
     word = word.downcase
-    vowels = 'aeiou'
+    vowels = %w(a e i o u)
     result = ''
-    vowels.each_char do |i|
+    vowels.any? do |i|
          if word[0] == i 
-            puts result = "#{word}ay"
-         else 
-            sliced = word.slice!(0)
-            puts result = "#{word[1..-1]}#{sliced}ay"
+            return result = "#{word}ay"
+         elsif word[0] != i
+            return result = "#{word[1..-1]}#{word.slice(0)}ay"
+         elsif word[0,2] != i
+            #sliced = word.slice(0,2)
+            return result = "#{word[2..-1]}#{word.slice(0,2)}ay"
+            
         end
     end
+    result
 end
 
-translate('banana')
+translate('hello')
 
 
 
